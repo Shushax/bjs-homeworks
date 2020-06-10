@@ -1,5 +1,6 @@
-"use strict";
+
 function getResult(a,b,c) {
+    "use strict"
     let discriminant = (b ** 2) - (4 * a * c);
     let x = [];
     if (discriminant < 0) {
@@ -19,21 +20,16 @@ function getAverageMark(marks) {
         return 0;
     } else if (marks.length > 5) {
         console.log("Количество оценок больше, чем 5. Обрезаем!");
-        marks.slice(0, 4); 
+        marks = marks.slice(0, 5); 
     }
 
-    let newMark = 0;
-    if (newMark !== 0) {
-    marks.push(newMark);}
-
-    let sum = 0;
-    for (let i = 0; i < marks.length; i++) {
-      sum = sum + parseInt(marks[i]);
+      let sum = 0;
+      for (let i = 0; i < marks.length; i++) {
+        sum = sum + parseInt(marks[i]);
     }
+
     let averageMark = 0;
-    for (let i = 0; i < marks.length; i++) {
-      averageMark = sum / marks.length;
-    }
+    averageMark = sum / marks.length;
  
 
     
@@ -41,7 +37,13 @@ function getAverageMark(marks) {
     
 }
 
-function askDrink(name,dateOfBirthday){
-    // код для задачи №3 писать здесь
-    // return result;
+function askDrink(name, dateOfBirthday){
+    let result = (new Date().getFullYear() - dateOfBirthday);
+
+    if (result > 18) {
+        alert("Не желаете ли олд-фэшн, " + name + " ?");
+    } else if (result < 18) {
+        alert("Сожалею, " + name + ", но я не могу вам продать алкоголь. Зато могу предложить вам замечательный клюквенный компот!");
+    }
+    return result;
 }
