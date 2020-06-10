@@ -1,11 +1,44 @@
-function getResult(a,b,c){
-    // код для задачи №1 писать здесь
-    // return x;
+"use strict";
+function getResult(a,b,c) {
+    let discriminant = (b ** 2) - (4 * a * c);
+    let x = [];
+    if (discriminant < 0) {
+        x = [];
+    } else if (discriminant === 0) {
+        x = [-b / (2 * a)];
+    } else if (discriminant > 0) {
+        x.push((-b + (Math.sqrt(discriminant))) / (2 * a));
+        x.push((-b - (Math.sqrt(discriminant))) / (2 * a));  
+    }
+    return x;
 }
 
-function getAverageMark(marks){
-    // код для задачи №2 писать здесь
-    // return averageMark;
+function getAverageMark(marks) {
+
+    if (marks.length === 0) {
+        return 0;
+    } else if (marks.length > 5) {
+        console.log("Количество оценок больше, чем 5. Обрезаем!");
+        marks.slice(0, 4); 
+    }
+
+    let newMark = 0;
+    if (newMark !== 0) {
+    marks.push(newMark);}
+
+    let sum = 0;
+    for (let i = 0; i < marks.length; i++) {
+      sum = sum + parseInt(marks[i]);
+    }
+    let averageMark = 0;
+    for (let i = 0; i < marks.length; i++) {
+      averageMark = sum / marks.length;
+    }
+ 
+
+    
+    return averageMark;
+    
 }
 
 function askDrink(name,dateOfBirthday){
