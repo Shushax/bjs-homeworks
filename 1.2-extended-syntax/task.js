@@ -25,10 +25,7 @@ function getAverageMark(marks) {
         sum = sum + parseInt(marks[i]);
     }
 
-    let averageMark = 0;
-    averageMark = sum / marks.length;
- 
-    return averageMark;
+    return sum / marks.length;
     
 }
 
