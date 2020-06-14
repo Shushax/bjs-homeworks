@@ -16,15 +16,14 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
         return;
     } else {
         let totalAmount;
-        let now = new Date();
-        let yearsOfCredit = (date.getFullYear() - now.getFullYear());
-        let monthOfCredit = 0;
-        for (let i = 0; i < yearsOfCredit; i++) {
-            monthOfCredit += 12;
-        }
+        let monthOfCredit;
+        monthOfCredit = (date.getFullYear() - new Date().getFullYear()) * 12;
+        monthOfCredit -= new Date().getMonth();
+        monthOfCredit += date.getMonth();
+        monthOfCredit < 0 ? monthOfCredit = 0 : monthOfCredit;
         let bodyOfCredit = amount - contribution;
         let p = percent / 100 / 12
-        let monthlyPayment = bodyOfCredit * (p + p / (((1 + p)^monthOfCredit) - 1));
+        let monthlyPayment = bodyOfCredit * (p + p / (((1 + p) ** monthOfCredit) - 1));
         let result = monthlyPayment * monthOfCredit;
         totalAmount = result.toFixed(2);
         console.log(totalAmount);
