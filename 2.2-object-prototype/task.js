@@ -1,7 +1,8 @@
-String.prototype.isPalindrome = function(string) {
-    let reverseString = string.split('').reverse().join('');
+String.prototype.isPalindrome = function() {
+    const str = this;
+    const reverseStr = str.split('').reverse().join('');
 
-    if (reverseString === string) {
+    if (reverseStr == str) {
         return true;
     } else {
         return false;
@@ -15,7 +16,7 @@ function getAverageMark(marks) {
         sum += mark;
     }
 
-    let average = sum / marks.length;
+    const average = sum / marks.length;
 
     let roundedAverage = Math.round(average);
     return roundedAverage;
@@ -23,13 +24,9 @@ function getAverageMark(marks) {
 
 let now = Date.now();
 function checkBirthday(birthday) {
-    birthday = new Date(birthday).getTime();
-    let diff = now - birthday;
-    let msInYear = 31536000000;
+    const birthdayInMs = new Date(birthday).getTime();
+    let diff = now - birthdayInMs;
+    const msInYear = 31536000000;
     let age = diff / msInYear;
-    if (age > 18) {
-        result = "Да";
-    } else {
-        result = "Нет";
-    }
+    return age >= 18
 }
