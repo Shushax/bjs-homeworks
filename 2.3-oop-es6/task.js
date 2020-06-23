@@ -102,55 +102,55 @@ class Library {
 
 class StudentLog {
     constructor(name) {
-        this.name = name;
-        this.algebra = [];
-        this.geometry = [];
+      this.name = name;
+      this.marks = {};
     }
-
+  
     getName() {
-        return this.name;
+      return this.name
     }
-
+  
     addGrade(grade, subject) {
-        if (grade > 5 || grade < 1) {
-            console.log(`Вы пытались поставить оценку ${grade} по предмету ${subject}. Допускаются только числа от 1 до 5.`);
-            return this[subject].length;
-        }
-
-      this[subject].push(grade);
-
-      return this[subject].length;
-    }
-
+      if (!this.marks[subject]) {
+        this.marks[subject] = [];
+      }
+      if (grade >= 1 && grade <= 5) {
+        this.marks[subject].push(grade);
+        return this.marks[subject].length;
+      } else {
+        console.log(`Вы пытались поставить оценку ${grade} по предмету ${subject}. Допускаются только числа от 1 до 5.`);
+        return this.marks[subject].length;
+      }
+    } 
+  
     getAverageBySubject(subject) {
-        if ([subject] === undefined) {
-            return 0;
+      let sum = 0;
+      let result = 0;
+      if (this.marks[subject] && this.marks[subject].length) {
+        for (let i = 0; i < this.marks[subject].length; i++) {
+          sum += this.marks[subject][i];
+          result = sum / this.marks[subject].length;
         }
-
-        let sum = 0;
-        for (let i = 0; i < this[subject].length; i++) {
-            sum += this[subject][i];
-        }
-        const averageBySubject = sum / this[subject].length;
-        return averageBySubject;
+      }
+      return result;
     }
-
+  
     getTotalAverage() {
-        if (this.algebra.length === 0 && this.geometry.length === 0) {
-            return 0;
+      let sum = 0;
+      let count = 0;
+    
+      for (let prop in this.marks) {
+        for (let i = 0; i < this.marks[prop].length; i++) {
+          sum += this.marks[prop][i];
+          count ++
         }
-
-        let quantityMarks = 0;
-        let sumMarks = 0;
-        for (let key in this) {
-          if (Array.isArray(this[key])) {
-            quantityMarks++;
-            sumMarks += this.getAverageBySubject(this[key]);
-           }
-        } 
-
-        const totalAverage = sumMarks / quantityMarks;
-
-        return totalAverage;
+      }
+      let result = 0;
+      if (count > 0) {
+        result = sum / count
+      }
+      
+      return result;
     }
+  
 }
