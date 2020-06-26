@@ -92,8 +92,8 @@ class Library {
       let j = 0;
         for (let i = 0; i < this.books.length; i++) {
           if (this.books[i].name === bookName) {
-            this.books.splice(i, 1);
-            return this.books[i];
+            let book = this.books.splice(i, 1);
+            return book;
           }
           j++;
           if (j - 1 === this.books.length) {
