@@ -17,25 +17,21 @@ function sum(...args) {
         return false;
       } else {
         const result = arr1.every((element, index) => element === arr2[index]);
-        if (result === true) {
-        return true;
-        } else { 
-        return false;
-        }
+        return result;
       }
       
     }
 
     function memorize(fn, limit) {
-      const memory = [];
-
-      return function result(...args) {
+      return function fn(...args) {
+        const memory = [];
         const find = memory.find(() => compareArrays(memory.args, ...args));
-        if (find) {
+        if (find === true) {
+          const index = memory.indexOf(...args);
           return memory[index].result;
         } else {
           memory.push({args: sum, result: sum(...args)});
-          if (memory.length > 10) {
+          if (memory.length > limit) {
             memory.pop();
           }
           return sum(...args);
