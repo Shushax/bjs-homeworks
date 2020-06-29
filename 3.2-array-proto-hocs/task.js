@@ -12,29 +12,21 @@ function sum(...args) {
 
 
 function compareArrays(arr1, arr2) {
-
-    if ((arr1.length === arr2.length) && arr1.every((element, index) => element === arr2[index])) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
+  return ((arr1.length === arr2.length) && arr1.every((element, index) => element === arr2[index]));
+}
 
 
 function memorize(fn, limit) {
   return function (...args) {
     const memory = [];
-    const find = memory.find((element) => compareArrays(memory[element].args, args));
+    const find = memory.find((element) => compareArrays(element.args, args));
     if (find) {
-      console.log('AAAAA')
       return find.result;
     }
-    memory.unshift({args: args, result: sum(...args)});
+    memory.unshift({args: args, result: fn(...args)});
     if (memory.length > limit) {
       memory.pop();
     }
-    const result = fn(...args);
-    return result;
+    return memory[0].result;
   }
 }  
