@@ -10,17 +10,16 @@ class PrintEditionItem {
     }
 
     fix() {
-      if (this.state >= 66) {
-        return 'Состояние книги не может быть больше 100'
-      }
         this.state = this.state * 1.5;
     }
 
     set state(newCondition) {
         if (newCondition < 0) {
             this._state = 0;
+        } else if (newCondition > 100) {
+            this._state = 100;
         } else {
-            this._state = newCondition;
+          this._state = newCondition;
         }
     }
 
@@ -89,17 +88,13 @@ class Library {
       }
 
     giveBookByName(bookName) {
-      let j = 0;
         for (let i = 0; i < this.books.length; i++) {
           if (this.books[i].name === bookName) {
             let book = this.books.splice(i, 1);
-            return book;
-          }
-          j++;
-          if (j - 1 === this.books.length) {
-            return null;
+            return book[0];
           }
         }
+        return null;
     }
 }
 
