@@ -11,30 +11,30 @@ function sum(...args) {
 }
 
 
-  function compareArrays(arr1, arr2) {
+function compareArrays(arr1, arr2) {
 
-      if (arr1.length !== arr2.length) {
-        return false;
-      } else {
-        const result = arr1.every((element, index) => element === arr2[index]);
-        return result;
-      }
-      
+    if ((arr1.length === arr2.length) && arr1.every((element, index) => element === arr2[index])) {
+      return true;
+    } else {
+      return false;
     }
+  }
 
-    function memorize(fn, limit) {
-      return function fn(...args) {
-        const memory = [];
-        const find = memory.find(() => compareArrays(memory.args, ...args));
-        if (find === true) {
-          const index = memory.indexOf(...args);
-          return memory[index].result;
-        } else {
-          memory.push({args: sum, result: sum(...args)});
-          if (memory.length > limit) {
-            memory.pop();
-          }
-          return sum(...args);
-        }
-      }
-    }  
+
+
+function memorize(fn, limit) {
+  return function (...args) {
+    const memory = [];
+    const find = memory.find((element) => compareArrays(memory[element].args, args));
+    if (find) {
+      console.log('AAAAA')
+      return find.result;
+    }
+    memory.unshift({args: args, result: sum(...args)});
+    if (memory.length > limit) {
+      memory.pop();
+    }
+    const result = fn(...args);
+    return result;
+  }
+}  
