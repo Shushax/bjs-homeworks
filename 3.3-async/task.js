@@ -51,7 +51,7 @@ class AlarmClock {
     }
 
     printAlarms() {
-        this.alarmCollection.forEach(console.log(`ID: ${element.id}, время: ${element.time}`));
+        this.alarmCollection.forEach(element => console.log(`ID: ${element.id}, время: ${element.time}`));
     }
 
     clearAlarms() {
