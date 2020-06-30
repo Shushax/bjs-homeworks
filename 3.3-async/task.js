@@ -26,10 +26,10 @@ class AlarmClock {
         return `${hours}:${minutes}`;
     }
 
-    start() {
-        function checkClock() {
-            if (element.time === new Date()) {
-                fn();
+    start(alarm) {
+        function checkClock(alarm) {
+            if (alarm.time === this.getCurrentFormattedTime()) {
+                alarm.callback();
             }
         }
         if (!this.timerId) {
