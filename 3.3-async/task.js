@@ -29,6 +29,8 @@ class AlarmClock {
             return `${hours}:0${minutes}`;
         } else if (hours >= 0 && hours < 10) {
             return `0${hours}:${minutes}`;
+        } else {
+            return `${hours}:${minutes}`;
         }
     }
 
